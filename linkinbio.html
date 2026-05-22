@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiauna Jasmine Hall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --pink: #FFAEC9;
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --cream: #F7F4F0;
+    --grey: #E8E4DF;
+    --muted: #9a9a9a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* GRAIN */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    background: var(--pink);
+    overflow: hidden;
+    padding: 14px 0;
+    position: relative;
+    z-index: 10;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 18s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--black);
+    white-space: nowrap;
+    padding: 0 40px;
+  }
+  .marquee-item::after {
+    content: '·';
+    margin-left: 40px;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-image-side {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(20%);
+  }
+  .hero-image-side::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 60%, var(--cream) 100%);
+  }
+
+  .hero-text-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 40px;
+    position: relative;
+    background: var(--cream);
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 28px;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(52px, 6vw, 90px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+  .hero-name em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--black);
+    display: block;
+  }
+
+  .hero-dash {
+    width: 48px;
+    height: 2px;
+    background: var(--pink);
+    margin-bottom: 24px;
+  }
+
+  .hero-bio {
+    font-size: 15px;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.85;
+    max-width: 340px;
+    margin-bottom: 48px;
+  }
+
+  .hero-scroll {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-scroll::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--black);
+  }
+
+  /* PORTRAIT BLOCK */
+  .portrait-block {
+    background: var(--black);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 60vh;
+  }
+  .portrait-image {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 60px 40px 0;
+    background: var(--black);
+  }
+  .portrait-image img {
+    max-height: 500px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom;
+    position: relative;
+    z-index: 1;
+  }
+  .portrait-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+  }
+  .portrait-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 20px;
+  }
+  .portrait-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .portrait-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--pink);
+    display: block;
+  }
+  .portrait-body {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.85;
+    margin-bottom: 48px;
+    max-width: 360px;
+  }
+
+  /* LINKS */
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-decoration: none;
+    transition: all 0.2s;
+    group: true;
+  }
+  .link-item:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
+  .link-item:hover .link-label { color: var(--pink); }
+  .link-item:hover .link-arrow { transform: translateX(4px); color: var(--pink); }
+  .link-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: color 0.2s;
+  }
+  .link-arrow {
+    font-size: 18px;
+    color: rgba(255,255,255,0.3);
+    transition: all 0.2s;
+  }
+  .link-item.featured {
+    background: var(--pink);
+    padding: 16px 20px;
+    border: none;
+    margin-bottom: 12px;
+  }
+  .link-item.featured:first-child { border-top: none; }
+  .link-item.featured .link-label { color: var(--black); }
+  .link-item.featured .link-arrow { color: var(--black); }
+  .link-item.featured:hover { opacity: 0.9; }
+  .link-item.featured:hover .link-label { color: var(--black); }
+  .link-item.featured:hover .link-arrow { color: var(--black); transform: translateX(4px); }
+
+  /* FULL BLEED SECTION */
+  .fullbleed {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .fullbleed-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    transition: transform 0.1s ease;
+  }
+  .fullbleed-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .fullbleed-content {
+    position: relative;
+    z-index: 2;
+    padding: 80px 60px;
+    width: 100%;
+  }
+  .fullbleed-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .fullbleed-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(56px, 10vw, 120px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 40px;
+    max-width: 700px;
+  }
+  .fullbleed-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--pink);
+  }
+  .fullbleed-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-width: 460px;
+  }
+
+  /* CREATORS SECTION — LIGHT */
+  .creators-section {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+  }
+  .creators-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .creators-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .creators-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+  }
+  .creators-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 20px;
+  }
+  .creators-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+  .creators-title em {
+    font-style: italic;
+    font-weight: 400;
+    display: block;
+    color: var(--black);
+  }
+  .creators-body {
+    font-size: 15px;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.85;
+    margin-bottom: 40px;
+    max-width: 360px;
+  }
+  .creators-links .link-item {
+    border-bottom-color: rgba(0,0,0,0.1);
+  }
+  .creators-links .link-item:first-child { border-top-color: rgba(0,0,0,0.1); }
+  .creators-links .link-label { color: var(--black); }
+  .creators-links .link-arrow { color: rgba(0,0,0,0.2); }
+  .creators-links .link-item:hover .link-label { color: var(--pink); }
+  .creators-links .link-item:hover .link-arrow { color: var(--pink); }
+  .creators-links .link-item.featured .link-label { color: var(--black); }
+  .creators-links .link-item.featured .link-arrow { color: var(--black); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    padding: 48px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: rgba(255,255,255,0.25);
+  }
+  .footer-copy {
+    font-size: 10px;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.08em;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; height: auto; }
+    .hero-image-side { height: 55vh; }
+    .hero-image-side::after { background: linear-gradient(to bottom, transparent 60%, var(--cream) 100%); }
+    .hero-text-side { padding: 40px 24px 60px; }
+    .portrait-block { grid-template-columns: 1fr; }
+    .portrait-image { padding: 40px 24px 0; min-height: 320px; }
+    .portrait-text { padding: 40px 24px 60px; }
+    .fullbleed-content { padding: 60px 24px; }
+    .creators-section { grid-template-columns: 1fr; }
+    .creators-image { height: 50vh; }
+    .creators-text { padding: 48px 24px; }
+    footer { flex-direction: column; gap: 12px; padding: 32px 24px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">For The Builders</span>
+    <span class="marquee-item">For The Creators</span>
+    <span class="marquee-item">For The BibleHeads</span>
+    <span class="marquee-item">AI Agency Essentials</span>
+    <span class="marquee-item">TiaunaCreates</span>
+    <span class="marquee-item">For The Builders</span>
+    <span class="marquee-item">For The Creators</span>
+    <span class="marquee-item">For The BibleHeads</span>
+    <span class="marquee-item">AI Agency Essentials</span>
+    <span class="marquee-item">TiaunaCreates</span>
+    <span class="marquee-item">For The Builders</span>
+    <span class="marquee-item">For The Creators</span>
+    <span class="marquee-item">For The BibleHeads</span>
+    <span class="marquee-item">AI Agency Essentials</span>
+    <span class="marquee-item">TiaunaCreates</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-image-side">
+    <img src="childhood.jpg" alt="Tiauna Jasmine Hall">
+  </div>
+  <div class="hero-text-side">
+    <div class="hero-eyebrow">Author · Artist · Builder · BibleHead</div>
+    <h1 class="hero-name">
+      Tiauna
+      <em>Jasmine</em>
+      Hall
+    </h1>
+    <div class="hero-dash"></div>
+    <p class="hero-bio">Published author, visual artist, and media director building tools and digital products for creative multi-hyphenates who are serious about what God put in their hands.</p>
+    <span class="hero-scroll">Keep scrolling</span>
+  </div>
+</section>
+
+<!-- FOR THE BUILDERS — DARK WITH PORTRAIT -->
+<section class="portrait-block">
+  <div class="portrait-image">
+    <img src="aig.png" alt="Tiauna">
+  </div>
+  <div class="portrait-text">
+    <span class="portrait-label">AI Agency Essentials</span>
+    <h2 class="portrait-title">
+      For The
+      <em>Builders.</em>
+    </h2>
+    <p class="portrait-body">Tools, digital products, and resources for creative multi-hyphenates who are serious about building wealth from their God-given skillset.</p>
+    <div class="links">
+      <a href="https://tiaunacreates.github.io/free-quiz/" class="link-item featured" target="_blank">
+        <span class="link-label">Wealth Creation Diagnostic — Free</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://tiaunacreates.github.io/subscribe/" class="link-item" target="_blank">
+        <span class="link-label">Join For The Builders List</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://tiaunacreates.gumroad.com/" class="link-item" target="_blank">
+        <span class="link-label">Digital Products</span>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOR THE BIBLEHEADS — FULL BLEED -->
+<section class="fullbleed">
+  <div class="fullbleed-bg" style="background-image: url('heaven.png'); background-position: center top;"></div>
+  <div class="fullbleed-overlay" style="background: linear-gradient(to top, rgba(10,10,10,0.92) 40%, rgba(10,10,10,0.5) 100%);"></div>
+  <div class="fullbleed-content">
+    <span class="fullbleed-tag">BibleHead Community</span>
+    <h2 class="fullbleed-title">
+      For The
+      <em>BibleHeads.</em>
+    </h2>
+    <div class="fullbleed-links links">
+      <a href="https://biblehead.github.io/com/" class="link-item featured" target="_blank">
+        <span class="link-label">BibleHead Community</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://tiauna-creates.myshopify.com/products/biblehead-definition-tee" class="link-item" target="_blank">
+        <span class="link-label">BibleHead Definition Tee</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://www.patreon.com/cw/biblehead" class="link-item" target="_blank">
+        <span class="link-label">BibleHead on Patreon</span>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOR THE CREATORS — LIGHT SPLIT -->
+<section class="creators-section">
+  <div class="creators-image">
+    <img src="sky.jpg" alt="">
+  </div>
+  <div class="creators-text">
+    <div class="creators-tag">TiaunaCreates · His Divine Collective</div>
+    <h2 class="creators-title">
+      For The
+      <em>Creators.</em>
+    </h2>
+    <p class="creators-body">A creative community building together. Plus a weekly Substack where I write about the creative life and what God is doing in it.</p>
+    <div class="creators-links links">
+      <a href="https://www.hisdivine.org" class="link-item featured" target="_blank">
+        <span class="link-label">His Divine Collective</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://tiaunacreates.substack.com/" class="link-item" target="_blank">
+        <span class="link-label">A Glimmer of God — Substack</span>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Tiauna Jasmine Hall</div>
+  <div class="footer-copy">© 2026 Tiauna Jasmine Hall. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
