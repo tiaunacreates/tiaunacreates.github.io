@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiauna Jasmine Hall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --pink: #FFAEC9;
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --cream: #F7F4F0;
+    --grey: #E8E4DF;
+    --muted: #9a9a9a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* GRAIN */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  /* SAKURA CANVAS */
+  #sakura-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9997;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-image-side {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(20%);
+  }
+  .hero-image-side::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 60%, var(--cream) 100%);
+  }
+
+  .hero-text-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 40px;
+    position: relative;
+    background: var(--cream);
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 28px;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(52px, 6vw, 90px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+  .hero-name em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--black);
+    display: block;
+  }
+
+  .hero-dash {
+    width: 48px;
+    height: 2px;
+    background: var(--pink);
+    margin-bottom: 24px;
+  }
+
+  .hero-bio {
+    font-size: 15px;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.85;
+    max-width: 340px;
+    margin-bottom: 48px;
+  }
+
+  .hero-scroll {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-scroll::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--black);
+  }
+
+  /* BUILDERS — DARK MOODY PORTRAIT + MARBLE */
+  .builders-section {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    background: var(--black);
+  }
+
+  .builders-visual {
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+  }
+
+  /* marble art as full background */
+  .marble-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('art.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+    filter: contrast(1.2) brightness(0.7);
+  }
+
+  /* dark moody overlay */
+  .marble-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.7) 100%);
+  }
+
+  /* portrait floated on top */
+  .portrait-float {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 380px;
+    z-index: 2;
+    filter: drop-shadow(0 0 40px rgba(255,174,201,0.15)) drop-shadow(0 0 80px rgba(255,174,201,0.08));
+    mix-blend-mode: luminosity;
+    opacity: 0.9;
+  }
+
+  /* pink glow rim behind portrait */
+  .portrait-glow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 70%;
+    background: radial-gradient(ellipse at center bottom, rgba(255,174,201,0.12) 0%, transparent 70%);
+    z-index: 1;
+  }
+
+  .builders-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .section-title-dark {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(44px, 5.5vw, 80px);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .section-title-dark em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--pink);
+    display: block;
+  }
+
+  .section-body-dark {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.85;
+    margin-bottom: 44px;
+    max-width: 360px;
+  }
+
+  /* LINKS */
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border: 1px solid rgba(255,174,201,0.3);
+    text-decoration: none;
+    background: transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 rgba(255,174,201,0);
+  }
+  .link-item:hover {
+    border-color: var(--pink);
+    box-shadow: 0 0 18px rgba(255,174,201,0.35), 0 0 40px rgba(255,174,201,0.12), inset 0 0 20px rgba(255,174,201,0.04);
+    background: rgba(255,174,201,0.04);
+  }
+  .link-item:hover .link-label { color: var(--pink); }
+  .link-item:hover .link-arrow { transform: translateX(5px); color: var(--pink); }
+
+  .link-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: color 0.25s;
+  }
+  .link-arrow {
+    font-size: 18px;
+    color: rgba(255,255,255,0.4);
+    transition: all 0.25s;
+  }
+
+  /* BIBLEHEADS — FULL BLEED RAIN */
+  .fullbleed {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .fullbleed-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .fullbleed-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .fullbleed-content {
+    position: relative;
+    z-index: 2;
+    padding: 80px 60px;
+    width: 100%;
+  }
+  .fullbleed-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(44px, 5.5vw, 80px);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 40px;
+    max-width: 700px;
+  }
+  .fullbleed-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--pink);
+  }
+  .fullbleed-links {
+    max-width: 460px;
+  }
+
+  /* CREATORS — LIGHT SPLIT with heaven sky */
+  .creators-section {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+  }
+  .creators-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .creators-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .creators-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+  }
+  .section-title-light {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+  .section-title-light em {
+    font-style: italic;
+    font-weight: 400;
+    display: block;
+  }
+  .section-body-light {
+    font-size: 15px;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.85;
+    margin-bottom: 40px;
+    max-width: 360px;
+  }
+  .creators-links .link-item {
+    border-color: rgba(0,0,0,0.15);
+  }
+  .creators-links .link-label { color: var(--black); }
+  .creators-links .link-arrow { color: rgba(0,0,0,0.3); }
+  .creators-links .link-item:hover .link-label { color: var(--black); }
+  .creators-links .link-item:hover .link-arrow { color: var(--black); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    padding: 48px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-name {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.25);
+  }
+  .footer-copy {
+    font-size: 10px;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.08em;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; height: auto; }
+    .hero-image-side { height: 55vh; }
+    .hero-image-side::after { background: linear-gradient(to bottom, transparent 60%, var(--cream) 100%); }
+    .hero-text-side { padding: 40px 24px 60px; }
+    .builders-section { grid-template-columns: 1fr; }
+    .builders-visual { min-height: 400px; }
+    .builders-text { padding: 48px 24px 60px; }
+    .fullbleed-content { padding: 60px 24px; }
+    .creators-section { grid-template-columns: 1fr; }
+    .creators-image { height: 50vh; }
+    .creators-text { padding: 48px 24px; }
+    footer { flex-direction: column; gap: 12px; padding: 32px 24px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SAKURA CANVAS -->
+<canvas id="sakura-canvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-image-side">
+    <img src="childhood.jpg" alt="Tiauna Jasmine Hall">
+  </div>
+  <div class="hero-text-side">
+    <div class="hero-eyebrow">Author · Artist · Builder · BibleHead</div>
+    <h1 class="hero-name">
+      Tiauna
+      <em>Creates</em>
+    </h1>
+    <div class="hero-dash"></div>
+    <p class="hero-bio">Published author, visual artist, AI girlie, and media specialist building tools and digital products. Professional problem solver helping you figure things out.</p>
+
+  </div>
+</section>
+
+<!-- FOR THE BUILDERS -->
+<section class="builders-section">
+  <div class="builders-visual">
+    <div class="marble-bg"></div>
+    <div class="marble-overlay"></div>
+    <div class="portrait-glow"></div>
+    <img class="portrait-float" src="aig.png" alt="Tiauna">
+  </div>
+  <div class="builders-text">
+    <span class="section-label">AI Agency Essentials</span>
+    <h2 class="section-title-dark">
+      For The
+      <em>Builders.</em>
+    </h2>
+    <p class="section-body-dark">Tools, digital products, and resources for creative multi-hyphenates who are building and living in their God-given skillset.</p>
+    <div class="links">
+      <a href="https://tiaunacreates.github.io/free-quiz/" class="link-item" target="_blank">
+        <span class="link-label">Wealth Creation Diagnostic — Free</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://tiaunacreates.github.io/subscribe/" class="link-item" target="_blank">
+        <span class="link-label">Join For The Builders List</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://tiaunacreates.gumroad.com/" class="link-item" target="_blank">
+        <span class="link-label">Digital Products</span>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOR THE BIBLEHEADS — RAIN FULL BLEED -->
+<section class="fullbleed">
+  <div class="fullbleed-bg" style="background-image: url('rain.jpg'); background-position: center;"></div>
+  <div class="fullbleed-overlay" style="background: linear-gradient(to top, rgba(10,10,10,0.95) 40%, rgba(10,10,10,0.55) 100%);"></div>
+  <div class="fullbleed-content">
+    <span class="section-label">BibleHead Community</span>
+    <h2 class="fullbleed-title">
+      For The
+      <em>BibleHeads.</em>
+    </h2>
+    <div class="fullbleed-links links">
+      <a href="https://biblehead.github.io/com/" class="link-item" target="_blank">
+        <span class="link-label">What Is a BibleHead?</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://www.patreon.com/cw/biblehead" class="link-item" target="_blank">
+        <span class="link-label">Become a BibleHead</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://tiauna-creates.myshopify.com/products/biblehead-definition-tee" class="link-item" target="_blank">
+        <span class="link-label">BibleHead Definition Tee</span>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOR THE CREATORS — HEAVEN SKY -->
+<section class="creators-section">
+  <div class="creators-image">
+    <img src="heaven.png" alt="">
+  </div>
+  <div class="creators-text">
+    <span class="section-label" style="color: var(--pink);">TiaunaCreates · His Divine Collective</span>
+    <h2 class="section-title-light">
+      For The
+      <em>Creators.</em>
+    </h2>
+    <p class="section-body-light">A creative community for artists, writers, and multi-hyphenates building together. Plus a weekly Substack — poetry, prose, and revelations.</p>
+    <div class="creators-links links">
+      <a href="https://www.hisdivine.org" class="link-item" target="_blank">
+        <span class="link-label">His Divine Collective — Creative Community</span>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://tiaunacreates.substack.com/" class="link-item" target="_blank">
+        <span class="link-label">Poetry, Prose & Revelations — Substack</span>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">TiaunaCreates</div>
+  <div class="footer-copy">© 2026 Tiauna Jasmine Hall. All rights reserved.</div>
+</footer>
+
+<script>
+// SAKURA FALLING PETALS
+const canvas = document.getElementById('sakura-canvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const PINK = 'rgba(255, 174, 201,';
+const GLOW = 'rgba(255, 174, 201,';
+
+class Petal {
+  constructor() { this.reset(true); }
+
+  reset(initial = false) {
+    this.x = Math.random() * canvas.width;
+    this.y = initial ? Math.random() * canvas.height : -20;
+    this.size = Math.random() * 6 + 3;
+    this.speedY = Math.random() * 0.8 + 0.3;
+    this.speedX = Math.random() * 0.6 - 0.3;
+    this.opacity = Math.random() * 0.5 + 0.2;
+    this.rotation = Math.random() * Math.PI * 2;
+    this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+    this.sway = Math.random() * 0.8;
+    this.swayOffset = Math.random() * Math.PI * 2;
+    this.swaySpeed = Math.random() * 0.015 + 0.005;
+    this.glowing = Math.random() > 0.6;
+  }
+
+  update() {
+    this.y += this.speedY;
+    this.swayOffset += this.swaySpeed;
+    this.x += Math.sin(this.swayOffset) * this.sway + this.speedX;
+    this.rotation += this.rotationSpeed;
+    if (this.y > canvas.height + 20) this.reset();
+  }
+
+  draw() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rotation);
+
+    if (this.glowing) {
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = `${GLOW} 0.8)`;
+    }
+
+    ctx.globalAlpha = this.opacity;
+
+    // draw sakura petal shape
+    ctx.beginPath();
+    const s = this.size;
+    ctx.moveTo(0, -s);
+    ctx.bezierCurveTo(s * 0.8, -s * 0.8, s * 1.2, 0, 0, s);
+    ctx.bezierCurveTo(-s * 1.2, 0, -s * 0.8, -s * 0.8, 0, -s);
+
+    ctx.fillStyle = `${PINK} ${this.opacity})`;
+    ctx.fill();
+
+    if (this.glowing) {
+      ctx.strokeStyle = `${PINK} ${this.opacity * 1.5})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+
+    ctx.restore();
+  }
+}
+
+const petals = Array.from({ length: 55 }, () => new Petal());
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  petals.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
