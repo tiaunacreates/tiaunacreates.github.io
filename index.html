@@ -156,7 +156,7 @@
   .marble-bg {
     position: absolute;
     inset: 0;
-    background-image: url('art.jpg');
+    background-image: url('black+white.jpg');
     background-size: cover;
     background-position: center;
     opacity: 0.6;
@@ -331,11 +331,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-height: 80vh;
+    overflow: hidden;
   }
   .creators-image {
     position: relative;
     overflow: hidden;
+    max-width: 100%;
   }
+ 
   .creators-image img {
     position: absolute;
     inset: 0;
@@ -476,8 +479,8 @@
 
 <!-- FOR THE BIBLEHEADS — RAIN FULL BLEED -->
 <section class="fullbleed">
-  <div class="fullbleed-bg" style="background-image: url('sky.jpg'); background-position: center;"></div>
-  <div class="fullbleed-overlay" bbackground: linear-gradient(to top, rgba(10,10,10,0.85) 50%, rgba(10,10,10,0.45) 100%);></div>
+  <div class="fullbleed-bg" style="background-image: url('pink rain.jpg'); background-position: center;"></div>
+  <div class="fullbleed-overlay" background: linear-gradient(to top, rgba(10,10,10,0.85) 50%, rgba(10,10,10,0.45) 100%);></div>
   <div class="fullbleed-content">
     <span class="section-label">BibleHead Community</span>
     <h2 class="fullbleed-title">
