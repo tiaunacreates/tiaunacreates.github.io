@@ -74,19 +74,6 @@
     inset: 0;
     background: linear-gradient(to right, transparent 60%, var(--cream) 100%);
   }
- /* portrait floated on top */
-  .portrait-float {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    max-width: 730px;
-    z-index: 2;
-    filter: drop-shadow(0 0 40px rgba(255,174,201,0.15)) drop-shadow(0 0 80px rgba(255,174,201,0.08));
-    mix-blend-mode: luminosity;
-    opacity: 1.0;
-  }
  
   .hero-text-side {
     display: flex;
@@ -322,29 +309,25 @@
     overflow: hidden;
     align-items: stretch;
   }
- 
   .creators-image {
     position: relative;
     overflow: hidden;
-    max-width: 100%;
     min-height: 100vh;
   }
- 
   .creators-image img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center;
   }
-  }
- .creators-text {
+  .creators-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
     padding: 100px 60px 100px 80px;
+    min-height: 100vh;
   }
   
   .section-title-light {
@@ -427,8 +410,6 @@
 <section class="hero">
   <div class="hero-image-side">
     <img src="childhood.jpg" alt="Tiauna Jasmine Hall">
-   <div class="portrait-glow"></div>
-    <img class="portrait-float" src="aig.png" alt="Tiauna">
   </div>
   <div class="hero-text-side">
     <h1 class="hero-name">
@@ -474,7 +455,7 @@
 
 <!-- FOR THE BIBLEHEADS — RAIN FULL BLEED -->
 <section class="fullbleed">
-  <div class="fullbleed-bg" style="background-image: url('pink rain.jpg'); background-position: center;"></div>
+  <div class="fullbleed-bg" style="background-image: url('sky.png'); background-position: center;"></div>
   <div class="fullbleed-overlay" background: linear-gradient(to top, rgba(10,10,10,0.85) 50%, rgba(10,10,10,0.45) 100%);></div>
   <div class="fullbleed-content">
     <span class="section-label">BibleHead Community</span>
