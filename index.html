@@ -159,7 +159,7 @@
     background-image: url('black+white.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0;
+    opacity: 1;
     filter: contrast(1.2) brightness(0.7);
   }
 
@@ -167,7 +167,7 @@
   .marble-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.5) 80%);
+    background: linear-gradient(135deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.5) 70%);
   }
 
   .builders-text {
@@ -257,7 +257,7 @@
   /* BIBLEHEADS — FULL BLEED RAIN */
   .fullbleed {
     position: relative;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -273,7 +273,7 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: rgba(10,10,10,0.85);
+    background: rgba(10,10,10,0.7);
   }
   .fullbleed-content {
     position: relative;
@@ -312,13 +312,13 @@
   .creators-image {
     position: relative;
     overflow: hidden;
-    min-height: 100vh;
+    min-height: 50vh;
   }
   .creators-image img {
     position: absolute;
     inset: 0;
     width: 100%;
-    height: 100%;
+    height: 70%;
     object-fit: cover;
     object-position: center;
   }
@@ -327,7 +327,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 100px 60px 100px 80px;
-    min-height: 100vh;
+    min-height: 80vh;
   }
   
   .section-title-light {
