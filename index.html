@@ -74,7 +74,31 @@
     inset: 0;
     background: linear-gradient(to right, transparent 60%, var(--cream) 100%);
   }
+ /* portrait floated on top */
+  .portrait-float {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 77%;
+    max-width: 1000px;
+    z-index: 2;
+    filter: drop-shadow(0 0 40px rgba(255,174,201,0.15)) drop-shadow(0 0 80px rgba(255,174,201,0.08));
+    mix-blend-mode: luminosity;
+    opacity: 0.9;
+  }
 
+  /* pink glow rim behind portrait */
+  .portrait-glow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 70%;
+    background: radial-gradient(ellipse at center bottom, rgba(255,174,201,0.12) 0%, transparent 70%);
+    z-index: 1;
+  }
   .hero-text-side {
     display: flex;
     flex-direction: column;
@@ -168,32 +192,6 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0.7) 100%);
-  }
-
-  /* portrait floated on top */
-  .portrait-float {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 85%;
-    max-width: 1000px;
-    z-index: 2;
-    filter: drop-shadow(0 0 40px rgba(255,174,201,0.15)) drop-shadow(0 0 80px rgba(255,174,201,0.08));
-    mix-blend-mode: luminosity;
-    opacity: 0.9;
-  }
-
-  /* pink glow rim behind portrait */
-  .portrait-glow {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 70%;
-    background: radial-gradient(ellipse at center bottom, rgba(255,174,201,0.12) 0%, transparent 70%);
-    z-index: 1;
   }
 
   .builders-text {
@@ -299,6 +297,7 @@
     position: absolute;
     inset: 0;
     z-index: 1;
+    background: rgba(10,10,10,0.72);
   }
   .fullbleed-content {
     position: relative;
@@ -329,10 +328,11 @@
   .creators-section {
     background: var(--cream);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 45% 55%;
     min-height: 80vh;
     overflow: hidden;
   }
+ 
   .creators-image {
     position: relative;
     overflow: hidden;
@@ -352,7 +352,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 60px;
+    padding: 80px 60px 80px 80px;
+  }
   }
   .section-title-light {
     font-family: 'Playfair Display', serif;
@@ -433,6 +434,8 @@
 <section class="hero">
   <div class="hero-image-side">
     <img src="childhood.jpg" alt="Tiauna Jasmine Hall">
+   <div class="portrait-glow"></div>
+    <img class="portrait-float" src="aig.png" alt="Tiauna">
   </div>
   <div class="hero-text-side">
     <h1 class="hero-name">
@@ -450,8 +453,7 @@
   <div class="builders-visual">
     <div class="marble-bg"></div>
     <div class="marble-overlay"></div>
-    <div class="portrait-glow"></div>
-    <img class="portrait-float" src="aig.png" alt="Tiauna">
+    
   </div>
   <div class="builders-text">
     <span class="section-label">AI Agency Essentials</span>
