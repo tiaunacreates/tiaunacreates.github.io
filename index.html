@@ -80,12 +80,12 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 77%;
+    width: 50%;
     max-width: 1000px;
     z-index: 2;
     filter: drop-shadow(0 0 40px rgba(255,174,201,0.15)) drop-shadow(0 0 80px rgba(255,174,201,0.08));
     mix-blend-mode: luminosity;
-    opacity: 0.9;
+    opacity: 1.0;
   }
 
   /* pink glow rim behind portrait */
@@ -348,22 +348,24 @@
     object-position: center top;
   }
   }
-  .creators-text {
+ .creators-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 60px 80px 80px;
+    align-items: flex-start;
+    padding: 100px 60px 100px 80px;
   }
-  }
+  
   .section-title-light {
     font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: clamp(40px, 5vw, 72px);
+    font-size: clamp(48px, 6vw, 80px);
     line-height: 1;
     text-transform: uppercase;
     color: var(--black);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
+  
   .section-title-light em {
     font-style: italic;
     font-weight: 400;
